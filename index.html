@@ -2,327 +2,171 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>For My Forever ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Will You Marry Me 💍</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{
-  height:100vh;
-  background:radial-gradient(circle at top,#240046,#5a189a,#ff4d6d);
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#ffb6c1,#ff69b4,#c71585);
   display:flex;
   justify-content:center;
   align-items:center;
   color:#fff;
-  overflow:hidden;
-  perspective:1400px;
-}
-
-/* ---------- Containers ---------- */
-.container{
-  background:rgba(255,255,255,.15);
-  backdrop-filter:blur(18px);
-  padding:30px;
-  border-radius:25px;
-  width:90%;
-  max-width:420px;
-  text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  overflow-x:hidden;
 }
 
 .hidden{display:none}
-h1,h2{margin-bottom:20px}
 
-/* ---------- Inputs & Buttons ---------- */
-input{
+.container{
+  text-align:center;
+  padding:20px;
+  max-width:420px;
   width:100%;
+}
+
+h1{
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 25px #ffeb3b}
+}
+
+input{
   padding:12px;
-  border-radius:12px;
+  border-radius:10px;
   border:none;
-  margin-bottom:20px;
+  width:100%;
   font-size:16px;
+  margin-top:15px;
 }
 
 button{
-  padding:12px 28px;
-  border-radius:30px;
+  padding:14px 22px;
+  margin:12px;
   border:none;
+  border-radius:30px;
   font-size:16px;
   cursor:pointer;
 }
 
-.yes{
-  background:linear-gradient(135deg,#ff4d8d,#ff99c8);
-  color:white;
-}
+.yes{background:#ff4081;color:white}
+.no{background:#333;color:white;position:absolute}
 
-.no{
-  background:white;
-  color:#f72585;
-  position:absolute;
-}
+.stage{margin-top:30px}
 
-/* ---------- Floating Hearts ---------- */
-.heart{
-  position:absolute;
-  animation:floatUp 5s linear forwards;
-}
-@keyframes floatUp{
-  to{transform:translateY(-900px);opacity:0}
-}
-
-/* ---------- Proposal Text ---------- */
-#proposalText span{
-  opacity:0;
-  animation:fadeIn .05s forwards;
-}
-@keyframes fadeIn{to{opacity:1}}
-
-/* ---------- BOX ---------- */
-.box-scene{
-  width:220px;
-  height:220px;
-  margin:30px auto;
-  position:relative;
-  transform-style:preserve-3d;
+/* 💖 BOX */
+.box-wrapper{
+  perspective:800px;
+  margin:40px auto;
 }
 
 .box{
-  width:220px;
-  height:120px;
-  background:linear-gradient(135deg,#ff4d8d,#ff85b3);
-  border-radius:20px;
-  position:absolute;
-  bottom:0;
-  transform:rotateX(15deg);
+  width:160px;
+  height:140px;
+  background:#ff5fa2;
+  border-radius:15px;
+  position:relative;
+  transform-style:preserve-3d;
+  cursor:pointer;
 }
 
-/* Two lids */
-.lid{
-  width:110px;
-  height:60px;
-  background:linear-gradient(135deg,#ffe6f2,#fff);
-  position:absolute;
-  top:-60px;
-  transform-origin:bottom;
-  transition:1s;
+.box.shake{
+  animation:shake 0.5s infinite;
 }
 
-.lid.left{left:0;border-radius:20px 0 0 0}
-.lid.right{right:0;border-radius:0 20px 0 0}
-
-.shake{animation:shake .7s}
 @keyframes shake{
-  0%,100%{transform:rotateX(15deg)}
-  25%{transform:rotateX(15deg) translateX(-6px)}
-  50%{transform:rotateX(15deg) translateX(6px)}
+  0%{transform:rotateY(0deg)}
+  25%{transform:rotateY(10deg)}
+  50%{transform:rotateY(-10deg)}
+  75%{transform:rotateY(10deg)}
 }
 
-/* ---------- RING ---------- */
+.lid{
+  width:80px;
+  height:140px;
+  background:#ff8acb;
+  position:absolute;
+  top:0;
+  transform-origin:left;
+}
+
+.lid.left{left:0;border-radius:15px 0 0 15px}
+.lid.right{
+  right:0;
+  transform-origin:right;
+  border-radius:0 15px 15px 0
+}
+
+/* 💍 RING */
 .ring-holder{
   position:absolute;
+  top:-90px;
   left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  opacity:0;
+  transform:translateX(-50%) scale(0);
+  transition:1s ease;
 }
 
-.ring{
-  width:22px;
-  height:85px;
-  border-radius:50%;
-  border:5px solid gold;
-  background:linear-gradient(to right,#fff3a0,#ffd700,#fff3a0);
-  box-shadow:0 0 25px gold;
-  transform:rotateX(70deg);
-  animation:spin 4s linear infinite;
-  position:relative;
+.ring-holder.pop{
+  transform:translateX(-50%) scale(1);
+  animation:bounce 1s ease, spin 6s linear infinite;
+}
+
+@keyframes bounce{
+  0%{top:-40px}
+  50%{top:-110px}
+  100%{top:-90px}
 }
 
 @keyframes spin{
-  from{transform:rotateX(70deg) rotateZ(0deg)}
-  to{transform:rotateX(70deg) rotateZ(360deg)}
+  from{transform:translateX(-50%) rotateY(0deg) scale(1)}
+  to{transform:translateX(-50%) rotateY(360deg) scale(1)}
 }
 
-/* Diamond */
-.diamond{
-  width:18px;
-  height:18px;
-  background:linear-gradient(135deg,#fff,#cce6ff);
-  transform:rotate(45deg);
-  position:absolute;
-  top:-24px;
-  left:-4px;
-  box-shadow:0 0 15px white;
-}
-
-/* Pop + bounce */
-.pop{
-  animation:popUp 1.2s ease-out forwards,bounce .6s 1.2s;
-}
-@keyframes popUp{
-  to{opacity:1;transform:translate(-50%,-60px)}
-}
-@keyframes bounce{
-  50%{transform:translate(-50%,-75px)}
-}
-
-/* ---------- Sparks ---------- */
-.spark{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:gold;
+.ring{
+  width:70px;
+  height:70px;
+  border:6px solid gold;
   border-radius:50%;
-  animation:spark 1s forwards;
-}
-@keyframes spark{
-  to{transform:translate(var(--x),var(--y));opacity:0}
+  position:relative;
+  background:radial-gradient(circle,#ffd700,#ffb300);
 }
 
-/* Fireworks canvas */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  pointer-events:none;
-}
-</style>
-</head>
-
-<body>
-
-<audio id="music" src="love.mp3" loop></audio>
-<canvas id="fireworks"></canvas>
-
-<!-- STEP 1 -->
-<div class="container" id="step1">
-  <h1>Hey My Love ❤️</h1>
-  <p>Enter our special date 💕</p>
-  <input type="date" id="dateInput">
-  <button class="yes" onclick="checkDate()">Continue</button>
-</div>
-
-<!-- STEP 2 -->
-<div class="container hidden" id="step2">
-  <h2>Will you be my love? 💖</h2>
-  <button class="yes" onclick="goToProposal()">YES 😍</button>
-  <button class="no" id="noBtn">No 🙈</button>
-</div>
-
-<!-- STEP 3 -->
-<div class="container hidden" id="step3">
-  <h2 id="proposalText"></h2>
-
-  <div class="box-scene" onclick="openBox()">
-    <div class="box" id="box">
-      <div class="lid left" id="lidL"></div>
-      <div class="lid right" id="lidR"></div>
-
-      <div class="ring-holder" id="ringHolder">
-        <div class="ring">
-          <div class="diamond"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h1 id="finalText" class="hidden">Happy Propose Day Baby 💍❤️</h1>
-</div>
-
-<script>
-/* Music */
-document.body.addEventListener("click",()=>music.play(),{once:true});
-
-/* Hearts */
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*innerWidth+"px";
-  h.style.bottom="0";
-  h.style.fontSize=Math.random()*20+15+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5000);
-},350);
-
-/* Date check */
-function checkDate(){
-  if(dateInput.value==="2025-10-06"){
-    step1.classList.add("hidden");
-    step2.classList.remove("hidden");
-  } else alert("That’s not OUR date 😏❤️");
+.diamond{
+  width:22px;
+  height:22px;
+  background:#fff;
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%) rotate(45deg);
 }
 
-/* Impossible NO */
-const noBtn=document.getElementById("noBtn");
-document.addEventListener("mousemove",e=>{
-  const r=noBtn.getBoundingClientRect();
-  if(Math.abs(e.clientX-(r.left+r.width/2))<120)
-    noBtn.style.left=Math.random()*(innerWidth-100)+"px",
-    noBtn.style.top=Math.random()*(innerHeight-50)+"px";
-});
-
-/* Proposal text animation */
-function goToProposal(){
-  step2.classList.add("hidden");
-  step3.classList.remove("hidden");
-
-  const text="Will you marry me?";
-  proposalText.innerHTML="";
-  [...text].forEach((c,i)=>{
-    const span=document.createElement("span");
-    span.textContent=c;
-    span.style.animationDelay=i*0.05+"s";
-    proposalText.appendChild(span);
-  });
+.engrave{
+  position:absolute;
+  bottom:-22px;
+  width:100%;
+  font-size:12px;
+  text-align:center;
+  color:#fff;
 }
 
-/* Open box */
-function openBox(){
-  box.classList.add("shake");
-  setTimeout(()=>{
-    lidL.style.transform="rotateY(-110deg)";
-    lidR.style.transform="rotateY(110deg)";
-    ringHolder.classList.add("pop");
-    finalText.classList.remove("hidden");
-    sparks();
-    fireworks();
-  },700);
+/* 🎬 VIDEO */
+video{
+  width:100%;
+  margin-top:25px;
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+  opacity:0;
+  animation:fadeVideo 1.5s forwards;
 }
 
-/* Sparks */
-function sparks(){
-  for(let i=0;i<30;i++){
-    const s=document.createElement("div");
-    s.className="spark";
-    s.style.left="110px";
-    s.style.top="110px";
-    s.style.setProperty("--x",Math.random()*200-100+"px");
-    s.style.setProperty("--y",Math.random()*200-100+"px");
-    document.querySelector(".box-scene").appendChild(s);
-    setTimeout(()=>s.remove(),1000);
-  }
+@keyframes fadeVideo{
+  to{opacity:1}
 }
 
-/* Fireworks */
-const ctx=fireworks.getContext("2d");
-fireworks.width=innerWidth;
-fireworks.height=innerHeight;
-
-function fireworks(){
-  for(let i=0;i<120;i++){
-    ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
-    ctx.beginPath();
-    ctx.arc(innerWidth/2+Math.random()*300-150,
-            innerHeight/2+Math.random()*300-150,
-            3,0,Math.PI*2);
-    ctx.fill();
-  }
-  setTimeout(()=>ctx.clearRect(0,0,fireworks.width,fireworks.height),2000);
-}
-</script>
-
-</body>
-</html>
+/
